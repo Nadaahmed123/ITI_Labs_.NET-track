@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>task 3</title>
+
+  
+
+</head>
+
+<body>
+    <form method="POST" name="sample">
+    <input type="text" name="name" style="width: 80%;">
+    <input type="button" name="add" value="Add Data" onclick="addData();" class="btn btn-success"><hr>
+ 
+
+            <table id="tbl" class="table">
+
+                <thead>
+
+                <th>NO.</th>
+
+                <th>News</th>
+                
+            </thead>
+  
+            <tbody></tbody>
+
+            </table>
+
+ </form>     
+<button>count rows</button>
+
+
+ <script>
+
+       var i=0;
+     
+    function addData()
+
+    {
+        i++;
+  
+        var name=document.sample.name.value;
+
+        var tr = document.createElement('tr');
+        var td1 = tr.appendChild(document.createElement('td'));
+        var td2 = tr.appendChild(document.createElement('td'));
+     
+        td1.innerHTML=i;
+        td2.innerHTML=name;
+       
+        document.getElementById("tbl").appendChild(tr);
+
+        let mybtn=document.querySelector("button");
+        mybtn.addEventListener("click",function(){
+            document.write(i);
+        })
+    }
+
+    </script>
+
+
+
+    </body>
+
+</html>
+

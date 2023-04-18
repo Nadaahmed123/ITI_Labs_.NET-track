@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            background-color: rgb(235, 235, 240);
+            border:1px solid black;
+            padding:10px;
+            margin:25px auto;
+            width:400px;
+
+        }
+   
+        input[type="text"],select{
+            width:500px;
+            padding:10px;
+        }
+       
+        span{
+            display:none;
+            color:red;
+        }
+        .error{
+            border:2px solid red;
+        }
+        
+    </style>
+    <script>
+        window.addEventListener('load', function () {
+
+           
+           txt = document.getElementById('usertxt');
+           
+            email = document.getElementById('useremail');
+           number = document.getElementById('number');
+            txt.focus();
+           nameerror = document.getElementById('usernameerror');
+            emailerror = document.getElementById('useremailerror');
+            txt.addEventListener('blur', function () {
+
+                if (!isusernamevalide()) {
+                  
+                    txt.focus();
+                   // txt.select();
+                    nameerror.style.display = 'block';
+                    txt.classList.add("error");
+                } else {
+                  nameerror.style.display = 'none';
+                    txt.classList.remove("error");
+                }
+
+            });
+
+            useremail.addEventListener('blur', function () {
+
+                if (!isuseremailvalide()) { 
+                    email.focus();
+                    email.select();
+                   emailerror.style.display = 'block';
+                    email.classList.add("error");
+                } else {
+                    emailerror.style.display = 'none';
+                    email.classList.remove("error");
+                }
+
+            });
+            document.forms[0].addEventListener('submit', function (data) {
+                if(!(isuseremailvalide()&&isusernamevalide()))
+                {
+                    if (!isuseremailvalide()) {
+                        emailerror.style.display = 'block';
+                       email.classList.add("error");
+                        
+                    }
+                    if (!isusernamevalide()) {
+                        nameerror.style.display = 'block';
+                       txt.classList.add("error");
+                       
+                    }
+                  
+                    data.preventDefault();
+                    
+                }
+
+            });
+
+            document.forms[0].addEventListener('reset', function (e) {
+                if(!confirm('Are You Sure ?'))
+                {
+                    e.preventDefault();
+                }
+
+            });
+
+
+
+        });
+        function isusernamevalide() {
+            var namecheck = /^[A-Za-z]{6,8}$/;
+           
+            return txt.value.match(namecheck);
+        }
+       
+        function isuseremailvalide() {
+            return email.value.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/);
+        }
+    </script>
+</head>
+<body>
+   
+    <form method="get" action="#">
+        <table>
+            <div>
+            <tr>
+                <td rowspan="2"><label>UserName</label></td>
+                <td><input type="text" id="usertxt" placeholder="enter full name" /></td>
+            </tr>
+
+            <tr>
+                <td><span id="usernameerror"> Name Is Invalid</span></td>
+
+            </tr>
+            <tr>
+                <td rowspan="2"><label>country</label></td>
+                <td> <select name="pass" id="userpass">
+                    <option selected>Egypt</option>
+                    <option>London</option>
+                    <option>India</option>
+                    <option>America</option></td>
+            </tr>
+            <tr>
+                <td><span id="userpasserror">the field is empty</span></td>
+        
+            </tr>
+            <tr>
+                <td><label>ZIP</label></td>
+                <td><input type="text" id="number" /></td>
+               
+            </tr>
+            <tr>
+                <td rowspan="2"><label>UserEmail</label></td>
+                <td><input type="text" id="useremail" /></td>
+
+            </tr>
+            <tr>
+                <td><span id="useremailerror"> Email Not Valid </span></td>
+
+            </tr>
+            <tr>
+                <td rowspan="2"><label>Hoppies</label></td>
+                <td><input type="checkbox" id="check" />football
+                    <input type="checkbox" id="check" />swimming
+                    <input type="checkbox" id="check" />music
+                    <input type="checkbox" id="check" />tennis
+                </td>
+
+            </tr>
+            <tr>
+                <td><span id=""></span></td>
+
+            </tr>
+           
+            <tr>
+                <td colspan="2">
+                    <table style="width:50%;margin:5px auto;border:none;background-color: white;">
+                        <tr>
+                            <td style="text-align:right"><input type="submit" value="Register"  /> </td>
+                            <td><input type="Reset" value="Clear" /> </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
